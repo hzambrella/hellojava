@@ -16,9 +16,9 @@ public class ArrayUtils {
     }  
 //交换数组当中元素
     public static void exchangeElements(int[] array, int index1, int index2) {  
-        int temp = array[index1];  
-        array[index1] = array[index2];  
-        array[index2] = temp;  
+        int temp = array[index1-1];  
+        array[index1-1] = array[index2-1];  
+        array[index2-1] = temp;  
     }  
 
 //找到数组中最大值
