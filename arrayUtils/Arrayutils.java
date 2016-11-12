@@ -1,3 +1,5 @@
+// 操作数组的工具包
+
 package arrayUtils;
 // 数组工具
 // printArray:打印数组

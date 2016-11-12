@@ -1,5 +1,6 @@
+// 可变参数探索
 package maxNumber;
-// 可变参数
+
 public class maxNumbre {
 	public static void main(String args[]) {
 		// maxNum(new int[]={1,2,5,8,0});

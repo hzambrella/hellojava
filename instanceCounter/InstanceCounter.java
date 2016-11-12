@@ -1,3 +1,5 @@
+
+// static ±äÁ¿Ì½Ë÷
 package instanceCounter;
 
 public class InstanceCounter {
