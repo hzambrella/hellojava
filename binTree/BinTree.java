@@ -61,9 +61,9 @@ public class BinTree {
 		insertNode(node);
 		this.midOrderTraverse();
 	}
-	// 中序遍历
-
-	public void midOrderTraverse() {
+	
+	// 中序遍历整个树
+    public void midOrderTraverse() {
 		System.out.println("中序遍历：");
 		midOrderTraverse(root);
 		System.out.println();
@@ -78,20 +78,7 @@ public class BinTree {
 		}
 	}
 
-	// 搜索结点
-	public void searchNode(int data) {
-		Node x = this.root;
-		if (x == null) {
-			System.out.println("空树");
-
-		} else if (search(x, data) == null) {
-			System.out.println("没找到");
-		} else {
-			System.out.println("查找" + search(x, data).key + "成功");
-		}
-	}
-
-	// 查
+	// 查找
 	public Node search(Node x, int data) {
 		System.out.println("您要查找的是：" + data);
 
@@ -106,53 +93,47 @@ public class BinTree {
 	}
 
 	// 删除结点
-
-	public void delete(int data) {
-		Node node;
-		Node x = this.root;
-		if ((node = search(x, data)) == null) {
-			System.out.println("二叉树中不存在此结点！");
+    public void delete(int data) {
+		Node y;
+		Node x;
+		Node z = search(this.root, data);
+		if (z == null) {
+			System.out.println("没找到"+data);
 			return;
 		}
-		deleteNode(node);
-		System.out.println("删除结点" + data + "后：");
-		this.midOrderTraverse();
-	}
-
-	private void deleteNode(Node node) {
-		if (node == null) {
-			System.out.println("删除结点不能为空！");
-			return;
-		}
-		replacedNode(node);
-	}
-
-	private void replacedNode(Node node) { // 替换结点
-		if (node.leftChild != null && node.rightChild != null) { // 当有左右孩子时，用后继结点替换
-			replacedNodeOfPost(node);
+		// 设置要刪除的点y
+		if (z.leftChild == null || z.rightChild == null) {
+			y = z;    
 		} else {
-			if (node.leftChild != null) { // 当只有左孩子时，直接用左子树替换
-				node = node.leftChild;
-			} else if (node.rightChild != null) { // 只有右孩子时，直接有子树替换
-				node = node.rightChild;
-			} else { // 当没有左右孩子时，就直接释放了这个结点
-				freeNode(node);
-			}
+			y = predecessor(z);// 子树都不为空时，把后继移动到要删除的点上，
 		}
-	}
-
-	private void freeNode(Node node) { // 释放该结点，断掉其与父结点的链接
-		if (node == node.parent.leftChild) {
-			node.parent.leftChild = null;
+		
+		// 设置要删除的点y的子结点x
+		if (y.leftChild != null) {
+			x = y.leftChild;
 		} else {
-			node.parent.rightChild = null;
+			x = y.rightChild;
 		}
-	}
-
-	private void replacedNodeOfPost(Node node) {
-		Node y = this.predecessor(node); // 找后继结点
-		node.key = y.key;
-		replacedNode(y); // 替换了key之后，再一次递归把现在这个结点给替换了！
+		
+		// 若x存在，将x的parent指针指向y.parent
+		if (x != null) {
+			x.parent = y.parent;
+		}
+		
+        // 如果y是根结点
+		if (y.parent == null) {
+			this.root = x;
+		} else if (y == y.parent.leftChild) {
+			y.parent.leftChild = x;
+		}else{
+			y.parent.rightChild=x;
+		}
+		
+		if (y!=x){
+			z.key=y.key;
+			// 如果有卫星数据的话，映射。
+		}
+		midOrderTraverse();
 	}
 
 	/*
@@ -184,6 +165,7 @@ public class BinTree {
 		BinTree tree = new BinTree(datas);
 		tree.insert(10);
 		tree.search(tree.root, 12);
-		tree.delete(5);
+		tree.delete(12);
+		tree.delete(100);
 	}
 }
