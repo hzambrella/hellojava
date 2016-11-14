@@ -1,11 +1,13 @@
 // ¼ÆÊýÅÅÐò
 package countsort;
 
-public class Countsort {
+import arrayUtils.Arrayutils;
 
-	public static int[] countBySort(int[] A) {
+public class Countsort {
+	 
+	public static  int[] countBySort(int[] A) {
 		int k = 0;
-		k = ArrayUtils.maxInArray(A);
+		k = Arrayutils.maxInArray(A);
 		int[] C = new int[k + 1];
 		int[] B = new int[A.length];
 
@@ -36,12 +38,11 @@ public class Countsort {
 	}
 
 	public static void main(String[] args) {
-		Countsort sort = new Countsort();
 		int[] array = { 10, 18, 80, 17, 50, 45, 76, 32, 87, 78, 80 };
 
-		ArrayUtils.printArray(array);
+		Arrayutils.printArray(array);
 		int[] after = {};
 		after = countBySort(array);
-		ArrayUtils.printArray(after);
+		Arrayutils.printArray(after);
 	}
 }
