@@ -109,6 +109,8 @@ public class BinTree {
 		}
 		
 		// 设置要删除的点y的子结点x
+		// 有个定理：如果二叉查找树的某个结点有两个子女，其前驱没有右子树，后继没有左子树。
+		// 所以在情况三当中，后继不会是两个子结点
 		if (y.leftChild != null) {
 			x = y.leftChild;
 		} else {
@@ -161,11 +163,8 @@ public class BinTree {
 	}
 
 	public static void main(String args[]) {
-		int[] datas = { 12, 4, 5, 7, 4, 8, 3, 2, 6, 9 };
+		int[] datas = { 3,5,6,7,8,10,12,13,15,16,18,20,23 };
 		BinTree tree = new BinTree(datas);
-		tree.insert(10);
-		tree.search(tree.root, 12);
-		tree.delete(12);
-		tree.delete(100);
+		tree.delete(5);
 	}
 }
