@@ -1,12 +1,19 @@
 // 红黑树
 // 镜像问题要注意
+// 书上的版本null用哨兵结点nil[T]来替换。
 // if-else嵌套，如果太混乱用continue
 // 建立：RbTree
-// 插入：insertRb
+// 插入：insertRb。修复insertFixRb
+// 查找： rbSearch
 // 打印：print
-// 遍历：
+// 遍历: midOB
+// 删除： rbDelete。修复deleteFixRb
+// 前驱： successor
+// 最小元素：miniNode
+// 最大元素：maxiNode
 package rbTree;
 
+// 自己写的打印数组用的
 import arrayUtils.Arrayutils;
 
 public class RbTree {
@@ -75,6 +82,9 @@ public class RbTree {
 	}
 
 	// insert只会违反两种性质:根结点为红或者红结点的子女也是红。
+	// 犯得错误：if-else嵌套混乱
+	// 镜像问题:z.p是z.grandp的右子时怎么旋转
+	// 马虎：颜色更新
 	private void insertFixRb(Node z) {
 		while (isRed(z.parent)) { // 出错
 			Node y; // 叔结点
@@ -208,20 +218,119 @@ public class RbTree {
 			printRb(node.left, 1);
 			printRb(node.right, -1);
 		}
-
 	}
 
-	public void midOBPrint(Node node){
+	// 中序遍历
+	public void midOBPrint(Node node) {
 		System.out.print("中序遍历: {");
 		midOB(node);
 		System.out.print("}\n");
 	}
+
 	private void midOB(Node node) {
 		if (node != null) {
 			midOB(node.left);
-			System.out.print(node.key+",");
+			System.out.print(node.key + ",");
 			midOB(node.right);
 		}
+	}
+
+	// 以n为根结点查找
+	public Node rbSearch(Node n, int k) {
+		while (n != null && k != n.key) {
+			if (n.key > k) {
+				rbSearch(n.left, k);
+			} else {
+				rbSearch(n.right, k);
+			}
+		}
+		return n;
+	}
+
+	// 删除
+	public void rbDelete(int i) {
+		Node node = new Node(i);
+		// 查找 z;
+		if (rbSearch(this.root, i) == null) {
+			System.out.println("结点不存在");
+			return;
+		}
+		rbDeleteNode(node);
+	}
+
+	private void rbDeleteNode(Node z) {
+
+		// 第一步：确定删除结点y
+		Node y, x;
+		if (z.left == null || z.right == null) {
+			y = z;
+		} else {
+			y = successor(z);
+		}
+		// 第二步：确定y的子结点x。
+		// 有个定理：如果二叉查找树的某个结点有两个子女，其前驱没有右子树，后继没有左子树。
+		// 所以在情况三当中，后继不会是两个子结点
+		if (y.left != null) {
+			x = y.left;
+		} else {
+			x = y.right;
+		}
+		// 第三步：x!=nil，修改x.parent为y.parent（书上版本是无条件调用）
+		if (x != null) {
+			x.parent = y.parent;
+		}
+		// 第四步：更新y.parent的left或right为x
+		// 若y.parent不存在,更新tree.root为x
+		if (y.parent == null) {
+			this.root = x;
+		} else if (y == y.parent.left) {
+			y.parent.left = x;
+		} else {
+			y.parent.right = x;
+		}
+		// 第五步：修改z.key=y.key(若在确定y时，y=z，这步没造成什么改变)，若有卫星数据，修改相关信息。
+		z.key = y.key;
+		// 第六部： 修复红黑树
+		// 如果y.color 为红。不会影响性质，所以不修复。
+		if (y.color == 1) {
+			deleteFixRb();
+		}
+	}
+
+	// 修复刪除后的红黑树
+	private void deleteFixRb() {
+       
+	}
+
+	// x的后继
+	public Node successor(Node x) {
+		// case1:x有右子树，找右子树的最小结点
+		if (x.right != null) {
+			return miniNode(x.right);
+		}
+		Node y = x.parent;
+		// case2:x木有右子树，向上找，直到某个点y是y.parent.left或nil为止
+		while (y != null && x == y.right) {
+			x = y;
+			y = y.parent;
+		}
+		return y;
+	}
+
+	// node为根的树最小元素
+	public Node miniNode(Node node) {
+		while (node != null) {
+			node = node.left;
+		}
+		return node;
+	}
+
+	// node为根的树的最大元素
+	public Node maxiNode(Node node) {
+		while (node != null) {
+			node = node.right;
+		}
+		return node;
 	}
 
 	public static void main(String[] args) {
