@@ -31,7 +31,7 @@ public class Node {
 	// 绑定
 	// 二环：1-2-1 会造成1和2的三级都是1，影响业务
 	// 办法：有些地方增加判断语句：this.p!=y
-	// 三环：1-2-3-1 办法：this.p.p!=y
+	// 三环：1-2-3-1  造成1和2的第三级是1，影响业务。 办法：this.p.p!=y
 	public void bind(Node y) {
 		this.c1++;
 
