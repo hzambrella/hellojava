@@ -31,17 +31,46 @@ public class Node {
 	// 绑定
 	public void bind(Node y) {
 		this.c1++;
-		this.c2 += y.c1;
-		this.c3 += y.c2;
-		y.p = this;
-		if (this.p != null) {
+		System.out.println(this.name + ": this.c1:" + this.c1);
+		if (this.p != y) {
+			this.c2 += y.c1;
+		}
+		System.out.println(this.name + ": this.c2:" + this.c2);
+
+		if (this.p == null || (this.p != null && this.p != y && this.p.p != y)) {
+			this.c3 += y.c2;
+		}
+		System.out.println(this.name + ": this.c3:" + this.c3);
+
+		if (y.p != null) {
+			y.p.delete(y);
+		}
+
+		if (this.p != null && this.p != y) {
 			this.p.c2 += 1;
+			if (this.p.p!=y){
 			this.p.c3 += y.c1;
-			if (this.p.p != null) {
+			}
+			if (this.p.p != null&this.p.p!=y) {
 				this.p.p.c3 += 1;
 			}
 		}
+		y.p = this;
+	}
 
+	// 删除
+	public void delete(Node y) {
+		this.c1--;
+		this.c2 -= y.c1;
+		this.c3 -= y.c2;
+		y.p = this;
+		if (this.p != null) {
+			this.p.c2 -= 1;
+			this.p.c3 -= y.c1;
+			if (this.p.p != null) {
+				this.p.p.c3 -= 1;
+			}
+		}
 	}
 
 	// 打印
@@ -49,7 +78,7 @@ public class Node {
 		System.out.printf("%d:  1级: %d  2级:%d   3级: %d\n", this.name, this.c1, this.c2, this.c3);
 	}
 
-	// 测试
+	// 测试-------------------------------------------------------------
 	public static void test1() {
 		Node node1 = new Node(1);
 		Node node2 = new Node(2);
@@ -77,25 +106,61 @@ public class Node {
 		node7.print();
 	}
 
-	public static void test2() {
+	// 测试两点循环
+	public static void hztest2() {
 		Node node1 = new Node(1);
 		Node node2 = new Node(2);
-		// Node node3 = new Node(3);
 
 		node1.bind(node2);
-		// node2.bind(node3);
-		// node3.bind(node1);
+		node2.bind(node1);
 
 		node1.print();
 		node2.print();
-		// node3.print();
+
+		System.out.println("------------------");
+
+	}
+
+	// 测试三点循环
+	public static void hztest3() {
+		Node node1 = new Node(1);
+		Node node2 = new Node(2);
+		Node node3 = new Node(3);
+
+		node1.bind(node2);
+		node2.bind(node3);
+		node3.bind(node1);
+
+		node1.print();
+		node2.print();
+		node3.print();
+		System.out.println("------------------");
+	}
+
+	// 测试四点循环
+	public static void hztest4() {
+		Node node1 = new Node(1);
+		Node node2 = new Node(2);
+		Node node3 = new Node(3);
+		Node node4 = new Node(4);
+
+		node1.bind(node2);
+		node2.bind(node3);
+		node3.bind(node4);
+		node4.bind(node1);
+
+		node1.print();
+		node2.print();
+		node3.print();
+		node4.print();
+		System.out.println("------------------");
 
 	}
 
 	public static void main(String[] args) {
-		test1();
-		System.out.println("------------------");
-		test2();
+		hztest4();
+
+		// test3();
 	}
 
 }
