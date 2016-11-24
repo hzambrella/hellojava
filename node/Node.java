@@ -1,5 +1,13 @@
 // 分销：显示出某个点的1.2.3子级的数量,关系不是树性，是任意的网性，只有父子（上下）关系。
-// 例子  1-->2--->3--->4--->1
+// 例子  1--->2--->3--->4--->1
+// 应该打印：
+/*
+1:  1级: 1  2级:1   3级: 1
+2:  1级: 1  2级:1   3级: 1
+3:  1级: 1  2级:1   3级: 1
+4:  1级: 1  2级:1   3级: 1
+*/
+
 // 改进：test部分能不能循环打印？
 // 思考：数据库当中怎么实现？go当中怎么实现
 package node;
@@ -35,7 +43,7 @@ public class Node {
 	}
 
 	public void print() {	
-		System.out.printf("%d:  1阶: %d  2阶:%d   3阶: %d\n", this.name, this.c1, this.c2, this.c3);
+		System.out.printf("%d:  1级: %d  2级:%d   3级: %d\n", this.name, this.c1, this.c2, this.c3);
 	}
 // 测试
 public static void test1(){
@@ -68,15 +76,15 @@ public static void test1(){
 public static void test2(){
 	Node node1 = new Node(1);
 	Node node2 = new Node(2);
-	Node node3 = new Node(3);
+	//Node node3 = new Node(3);
 
 	node1.bind(node2);
-	node2.bind(node3);
+	//node2.bind(node3);
 	//node3.bind(node1);
 
 	node1.print();
 	node2.print();
-	node3.print();
+	//node3.print();
 
 }
 	public static void main(String[] args) {
