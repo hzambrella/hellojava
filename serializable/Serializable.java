@@ -1,5 +1,6 @@
 // 序列化
 //1) 把对象的字节序列永久地保存到硬盘上(通常存放在一个文件中); 2) 在网络上传送对象的字节序列
+
 package serializable;
 
 import java.io.FileOutputStream;
