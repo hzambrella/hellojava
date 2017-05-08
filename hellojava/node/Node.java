@@ -31,7 +31,7 @@ public class Node {
 	// 绑定
 	// 二环：1-2-1 会造成1和2的三级都是1，影响业务
 	// 办法：有些地方增加判断语句：this.p!=y
-	// 三环：1-2-3-1  造成1和2的第三级是1，影响业务。 办法：this.p.p!=y
+	// 三环：1-2-3-1 造成1和2的第三级是1，影响业务。 办法：this.p.p!=y
 	public void bind(Node y) {
 		this.c1++;
 
@@ -58,7 +58,7 @@ public class Node {
 				this.p.c3 += y.c1;
 			}
 			// 避免三环
-			if (this.p.p != null & this.p.p != y) {
+			if (this.p.p != null &&this.p.p != y) {
 				this.p.p.c3 += 1;
 			}
 		}
@@ -96,7 +96,7 @@ public class Node {
 	}
 
 	// 测试-------------------------------------------------------------
-	
+
 	// 测试两点循环
 	public static void hztest2() {
 		System.out.println("二环：");
@@ -132,7 +132,7 @@ public class Node {
 
 	// 测试三点回头插入循环 1-2 2-3 3-2
 	public static void ctest3() {
-		System.out.println("回头型3");
+		System.out.println("回头型3    1-2  2-3  3-2");
 		Node node1 = new Node(1);
 		Node node2 = new Node(2);
 		Node node3 = new Node(3);
@@ -147,30 +147,44 @@ public class Node {
 		System.out.println("------------------");
 	}
 
-	
-	// 测试四点回头插入循环 1-2 2-3 3-4  4-3
-		public static void ctest4() {
-			System.out.println("回头型4");
-			Node node1 = new Node(1);
-			Node node2 = new Node(2);
-			Node node3 = new Node(3);
-			Node node4 = new Node(4);
+	public static void backtest3() {
+		System.out.println(" 回头型  1-2   2-1   2-3");
+		Node node1 = new Node(1);
+		Node node2 = new Node(2);
+		Node node3 = new Node(3);
+		node1.bind(node2);
 
-			node1.bind(node2);
-			node2.bind(node3);
-			node3.bind(node4);
-			node4.bind(node3);
+		node2.bind(node3);
+		node2.bind(node1);
+		node1.print();
+		node2.print();
+		node3.print();
+		System.out.println("------------------");
+	}
 
-			node1.print();
-			node2.print();
-			node3.print();
-			node4.print();
-			System.out.println("------------------");
-		}
-		
+	// 测试四点回头插入循环 1-2 2-3 3-4 4-3
+	public static void ctest4() {
+		System.out.println("回头型4  1-2  2-3  3-4  4-3");
+		Node node1 = new Node(1);
+		Node node2 = new Node(2);
+		Node node3 = new Node(3);
+		Node node4 = new Node(4);
+
+		node1.bind(node2);
+		node2.bind(node3);
+		node3.bind(node4);
+		node4.bind(node3);
+
+		node1.print();
+		node2.print();
+		node3.print();
+		node4.print();
+		System.out.println("------------------");
+	}
+
 	// 测试四点循环
 	public static void hztest4() {
-		System.out.println("四环");
+		System.out.println("四环 ");
 		Node node1 = new Node(1);
 		Node node2 = new Node(2);
 		Node node3 = new Node(3);
@@ -188,23 +202,55 @@ public class Node {
 		System.out.println("------------------");
 
 	}
-	
-// 标准的测试：二环，三环，回头插入，四环
-	public static void hztest(){
+
+	// 大环回头 1-2 2-3 3-4 4-5 5-6 6-7 7-8 8-1 2-8
+	public static void backtest8() {
+		System.out.println("回头： 1-2 2-3 3-4 4-5  5-6  6-7  7-8  8-1  2-8 ");
+		Node node1 = new Node(1);
+		Node node2 = new Node(2);
+		Node node3 = new Node(3);
+		Node node4 = new Node(4);
+		Node node5 = new Node(5);
+		Node node6 = new Node(6);
+		Node node7 = new Node(7);
+		Node node8 = new Node(8);
+		node1.bind(node2);
+
+		node3.bind(node4);
+		node4.bind(node6);
+		node6.bind(node5);
+		node5.bind(node7);
+		node7.bind(node1);
+		node2.bind(node3);
+		node2.bind(node8);
+		node1.print();
+		node2.print();
+		node3.print();
+		node4.print();
+		node5.print();
+		node6.print();
+		node7.print();
+		node8.print();
+		System.out.println("------------------");
+	}
+
+	// 标准的测试：二环，三环，回头插入1-2 2-3 3-2,回头插入1-2 2-1 2-3 ，四环
+	public static void hztest() {
 		hztest2();
 		hztest3();
 		ctest3();
+		backtest3();
 		ctest4();
 		hztest4();
+		backtest8();
+
 	}
-	
-	
-	
+
 	public static void main(String[] args) {
 		hztest();
 
 	}
-	
+
 	// 自定义测试
 	public static void test1() {
 		Node node1 = new Node(1);
@@ -231,7 +277,7 @@ public class Node {
 		node5.print();
 		node6.print();
 		node7.print();
+		node8.print();
+		System.out.println("------------------");
 	}
-
-
 }
