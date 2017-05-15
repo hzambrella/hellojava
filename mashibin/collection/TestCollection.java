@@ -1,4 +1,4 @@
-package collection;
+package mashibin.collection;
 
 import java.util.*;
 //ºØ∫œ¿‡

@@ -1,4 +1,4 @@
-package ThreadDeadLock;
+package mashibin.ThreadDeadLock;
 
 
 //½ÓThreadLock

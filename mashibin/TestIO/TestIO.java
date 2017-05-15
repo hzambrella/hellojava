@@ -1,4 +1,4 @@
-package TestIO;
+package mashibin.TestIO;
 
 import java.io.*;
 import java.util.Date;

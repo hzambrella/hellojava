@@ -1,4 +1,4 @@
-package ThreadLock;
+package mashibin.ThreadLock;
 
 //学习线程（1 线程的建立，线程死锁）
 //建立线程的两种办法:接口Runnable，继承Thread。
