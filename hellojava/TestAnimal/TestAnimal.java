@@ -1,4 +1,4 @@
-package TestAnimal;
+package hellojava.TestAnimal;
 
 // ∂‡Ã¨
 public class TestAnimal {

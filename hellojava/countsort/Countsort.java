@@ -1,7 +1,7 @@
 // ¼ÆÊıÅÅĞò
-package countsort;
+package hellojava.countsort;
 
-import arrayUtils.Arrayutils;
+import hellojava.arrayUtils.Arrayutils;
 
 public class Countsort {
 	 

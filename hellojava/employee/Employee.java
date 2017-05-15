@@ -1,4 +1,4 @@
-package employee;
+package hellojava.employee;
 
 public class Employee {
 		   String name;

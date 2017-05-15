@@ -1,6 +1,6 @@
 // 变量及其作用域
 // 一个源文件只能有一个public类
-package variables;
+package hellojava.variables;
 
 public class Variables {
 	private int aa = 2;

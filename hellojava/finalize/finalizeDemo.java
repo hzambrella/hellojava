@@ -1,4 +1,4 @@
-package finalize;
+package hellojava.finalize;
 // 例如，你可以使用finalize()来确保一个对象打开的文件被关闭了。
 public class finalizeDemo {
 	public static void main(String[] args) {

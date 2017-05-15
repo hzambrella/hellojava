@@ -1,4 +1,4 @@
-package swap;
+package hellojava.swap;
 
 // 值传递（利用返回数组）
 public class ByValue {

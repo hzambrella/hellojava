@@ -1,5 +1,5 @@
 //  二叉查找树
-package binTree;
+package hellojava.binTree;
 
 public class BinTree {
 	// 树的根

@@ -11,10 +11,10 @@
 // 前驱： successor
 // 最小元素：miniNode
 // 最大元素：maxiNode
-package rbTree;
+package hellojava.rbTree;
 
 // 自己写的打印数组用的
-import arrayUtils.Arrayutils;
+import hellojava.arrayUtils.Arrayutils;
 
 public class RbTree {
 	Node root = null;

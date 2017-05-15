@@ -1,4 +1,4 @@
-package TestEnum;
+package hellojava.TestEnum;
 
 import java.util.*;
 

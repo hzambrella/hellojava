@@ -1,5 +1,5 @@
 // 反序列化，从e:/jp/tmp/e.ser读取信息
-package serializable;
+package hellojava.serializable;
 
 import java.io.FileInputStream;
 import java.io.IOException;

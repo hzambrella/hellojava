@@ -1,6 +1,6 @@
-package insertsort;
+package hellojava.insertsort;
 
-import selectBySize.ArrayUtils;
+import hellojava.selectBySize.ArrayUtils;
 
 //≤Â»Î≈≈–Ú
 public class InsertSort {

@@ -1,4 +1,4 @@
-package swap;
+package hellojava.swap;
 //值传递和引用传递
 
 public class Swap {

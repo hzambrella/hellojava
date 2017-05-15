@@ -1,5 +1,5 @@
 // 可变参数探索
-package maxNumber;
+package hellojava.maxNumber;
 
 public class maxNumbre {
 	public static void main(String args[]) {

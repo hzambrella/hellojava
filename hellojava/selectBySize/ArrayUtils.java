@@ -1,5 +1,5 @@
 //
-package selectBySize;
+package hellojava.selectBySize;
 
 //¹¤¾ß
 public class ArrayUtils {

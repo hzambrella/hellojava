@@ -1,5 +1,5 @@
 // ²âÊÔµÄ·½·¨
-package employee;
+package hellojava.employee;
 
 public class EmployeeTest {
 	public static void main(String args[]){

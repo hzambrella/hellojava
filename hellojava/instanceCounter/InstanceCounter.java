@@ -1,6 +1,6 @@
 
 // static ±äÁ¿Ì½Ë÷
-package instanceCounter;
+package hellojava.instanceCounter;
 
 public class InstanceCounter {
 

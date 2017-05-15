@@ -1,4 +1,4 @@
-package arrayListTest;
+package hellojava.arrayListTest;
 
 public class TestArrayFor {
 

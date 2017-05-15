@@ -1,4 +1,4 @@
-package serializable;
+package hellojava.serializable;
 
 public class Employees implements java.io.Serializable{
 public String name;

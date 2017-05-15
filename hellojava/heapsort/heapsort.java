@@ -1,4 +1,4 @@
-package heapsort;
+package hellojava.heapsort;
 
 // 堆排序
 // 第一步：建立最大堆

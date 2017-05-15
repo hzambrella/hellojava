@@ -1,4 +1,4 @@
-package heapsort;
+package hellojava.heapsort;
 // ´òÓ¡Êı×é
 public class ArrayUtils {
 	 public static void printArray(int[] array) {  

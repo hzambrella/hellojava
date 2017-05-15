@@ -11,7 +11,7 @@
 
 // test部分能不能循环打印？
 // 数据库当中怎么实现？go当中怎么实现
-package node;
+package hellojava.node;
 
 public class Node {
 	int name;

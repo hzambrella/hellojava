@@ -1,5 +1,5 @@
 // Ã¶¾Ù³õ²½Ì½Ë÷
-package puppy;
+package hellojava.puppy;
 
 // package Puppy 
 public class Puppy {

@@ -1,6 +1,6 @@
 // 操作数组的工具包
 
-package arrayUtils;
+package hellojava.arrayUtils;
 // 数组工具
 // printArray:打印数组
 // exchageElements:交换数组元素

@@ -1,5 +1,5 @@
 // ×Ö·û´®±È½Ï
-package practice;
+package hellojava.practice;
 
 public class StringEmp {
 	public void stringcmp() {

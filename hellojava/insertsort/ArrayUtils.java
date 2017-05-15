@@ -1,5 +1,5 @@
 //
-package insertsort;
+package hellojava.insertsort;
 
 //¹¤¾ß
 public class ArrayUtils {

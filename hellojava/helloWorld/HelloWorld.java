@@ -1,7 +1,7 @@
 // hello world
-package helloWorld;
+package hellojava.helloWorld;
 // package heloworld
-import arrayUtils.*;
+import hellojava.arrayUtils.*;
 public class HelloWorld {
 
 	public static void main(String []args){
