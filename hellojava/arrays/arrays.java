@@ -1,6 +1,7 @@
 package hellojava.arrays;
 
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 public class arrays {
@@ -67,8 +68,19 @@ public class arrays {
 		  
 		System.out.println("对于多维数组 equals居然返回："+Arrays.equals(name1, name2));    // false  
 		System.out.println("deep equals才是正解："+Arrays.deepEquals(name1, name2));// true  deep equals才是正解
-		List l=Arrays.asList(new Object[][]{{1,2,3},{4,5,6},{7,8,9}});
-		System.out.println(l.size());
+		
+		List<Object[]> l=Arrays.asList(new Object[][]{{1,2,3},{4,5,6},{7,8,9}});
+		System.out.println("多维数组 增强for:");
+		for (Object[] ol:l){
+			output(ol);
+		}
+		
+		System.out.println("多维数组 迭代器:");
+		Iterator iterator=l.iterator();
+		while(iterator.hasNext()){
+			Object[] ol=(Object[]) iterator.next();
+			output(ol);
+		}
 	}
 
 }

@@ -83,6 +83,7 @@ class TestCollection {
 		System.out.println(c);
 		
 		//array用法（有次序和序号，可重复）（读快改慢）
+		@SuppressWarnings("rawtypes")
 		Collection a=new ArrayList();
 		a.add(new String("hello"));
 		a.add(new Integer(1));

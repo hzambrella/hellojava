@@ -2,6 +2,9 @@
 package hellojava.practice;
 
 public class StringEmp {
+	public void iAddAdd(int i){
+		System.out.println(i);
+	}
 	public void stringcmp() {
 		String str = "Hello World";
 		String str2 = "hello world";
@@ -49,5 +52,8 @@ public class StringEmp {
 		StringEmp ss = new StringEmp();
 		ss.stringcmp();
 		ss.stringLastIndex();
+		int i=1;
+		ss.iAddAdd(i++);
+		System.out.println(i);
 	}
 }

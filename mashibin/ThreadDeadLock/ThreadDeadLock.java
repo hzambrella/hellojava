@@ -10,8 +10,8 @@ package mashibin.ThreadDeadLock;
 public class ThreadDeadLock  extends Thread{
 	int flag=0;
 	//问题1：没有死锁现象啊!
-	//Object o1=new Object();
-	//Object o2=new Object();
+//	Object o1=new Object();
+//	Object o2=new Object();
 	
 	//上面的两句加上static
 	//因为static才会出现资源抢夺
@@ -27,33 +27,33 @@ public class ThreadDeadLock  extends Thread{
 
 	public void run(){
 		if (this.flag==1){
-			System.out.println("flag:"+this.flag);
+			System.out.println("flag:"+Thread.currentThread().getName()+":"+this.flag);
 			synchronized(o1){
 				try {
 					Thread.sleep(100);
 				}catch (Exception e){
 					e.printStackTrace();
 				}
-				System.out.println("o1");
+				System.out.println(Thread.currentThread().getName()+":o1");
 				
 				synchronized(o2){
-					System.out.println("o2");
+					System.out.println(Thread.currentThread().getName()+":o2");
 				}
 			}
 		}//flag==1
 		
 			if (this.flag==0){
-				System.out.println("flag:"+this.flag);
+				System.out.println("flag:"+Thread.currentThread().getName()+":"+this.flag);
 				synchronized(o2){
 					try {
 						Thread.sleep(2000);
 					}catch (Exception e){
 						e.printStackTrace();
 					}
-					System.out.println("o2");
+					System.out.println(Thread.currentThread().getName()+":o2");
 					
 					synchronized(o1){
-						System.out.println("o1");
+						System.out.println(Thread.currentThread().getName()+":o1");
 					}
 				}
 			
@@ -65,7 +65,7 @@ public class ThreadDeadLock  extends Thread{
 		ThreadDeadLock t1=new ThreadDeadLock();
 		ThreadDeadLock t2=new ThreadDeadLock();
 		t1.flag =0;
-		t1.flag =1;
+		t2.flag =1;
 		t1.start();
 		t2.start();
 	}

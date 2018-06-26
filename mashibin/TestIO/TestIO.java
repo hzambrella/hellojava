@@ -9,7 +9,10 @@ import java.util.Date;
 //System.out 是PrintStream
 //System.in 是InputStream
 
+
+
 public class TestIO {
+
 	public static void main(String[] args){
 		System.out.println("练习IO");
 		//----- 练习1， 日志----------
@@ -17,7 +20,11 @@ public class TestIO {
 		//------练习2，内存byteArray-----
 		//practice2();
 		//----练习3：序列化------------
-		//practice3();
+		//practice3();z
+	}
+
+	public static void main(String[] args,String[] args2){
+		System.out.println("练习IO2");
 	}
 	
 	public static void practice1(){
