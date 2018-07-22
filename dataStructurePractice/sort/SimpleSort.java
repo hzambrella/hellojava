@@ -1,42 +1,39 @@
 package dataStructurePractice.sort;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
-import dataStructurePractice.Common;
+import java.util.Arrays;
 
 //ºÚµ•≈≈–Ú
-public class SimpleSort {
-	public static List<Integer> sort(List<Integer> list,boolean ascending){
-		List<Integer> l=new ArrayList<Integer>();
-		Iterator<Integer> iterator=list.iterator();
-		while (iterator.hasNext()){
-			Integer i=(Integer) iterator.next();
-			l.add(i);
-		}
-		int length=l.size();
-		
-		for (int i=0;i<length;i++){
-			for (int j=i+1;j<length;j++){
-				if ((l.get(j)<l.get(i)&&ascending)||(l.get(j)>l.get(i)&&!ascending)){
-					Common.swap(l, i, j);
-				}
-			}
-			
-		}
-		
-		return l;	
+public class SimpleSort <T extends Comparable<T>> {
+	public static void main(String[] args) {
+		Integer[] tosort={3,4,1,6,7,8,10,9,0,2};
+		Integer[] tosort2={9,1,2,3,4,5,6,7,8,0};
+		SimpleSort<Integer> simpleSort=new SimpleSort<>();
+		simpleSort.sort(tosort, false);
+		simpleSort.sort(tosort2, true);
+		System.out.println(Arrays.toString(tosort));
+		System.out.println(Arrays.toString(tosort2));
 	}
 	
-	public static void main(String[] args) {
-		List<Integer>l=new ArrayList<Integer>();
-		int[] array={9,3,1,2,6,7,8,5,4};
-		for (int i:array){
-			l.add(i);
+	
+	public T[] sort(T[] tosort,boolean isRise){
+		if (tosort.length==0||tosort.length==1){
+			return tosort;
 		}
-		System.out.println(l);
-		List<Integer> result=SimpleSort.sort(l, true);
-		System.out.println(SimpleSort.class.getName()+":"+result);
+		
+		for (int i=0;i<tosort.length;i++){
+			for (int j=i+1;j<tosort.length;j++){
+				if (!(tosort[i].compareTo(tosort[j])>0^isRise)){
+					swap(tosort,i,j);
+				}
+			}
+		}
+		
+		return tosort;
+	}
+	
+	private void swap(T[] tosort,int begin,int end){
+		T t=tosort[begin];
+		tosort[begin]=tosort[end];
+		tosort[end]=t;
 	}
 }

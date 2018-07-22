@@ -1,58 +1,49 @@
 package dataStructurePractice.sort;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.Arrays;
 
-import dataStructurePractice.Common;
-
-/*希尔排序
- * 
+/*希尔排序 不合格
+ *  插入排序基本有序且元素数量少时，效率高。所以改进的希尔排序。
+ *  将序列分成小段执行插入排序。直到分成的段中元素数量为1。
+ *  分段：increament=increament/3+1;  把插入排序中，下一个元素改为隔increament的元素。
  */
-public class ShellSort {
-	public static List<Integer> sort(List<Integer> list,boolean ascending){
-		List<Integer> l=new ArrayList<Integer>();
-		Iterator<Integer> iterator=list.iterator();
-		l.add(0);
-		while (iterator.hasNext()){
-			Integer i=(Integer) iterator.next();
-			l.add(i);
-		}
-		int length=l.size();
-		int increament=length;
-		int j=0;
-		do{
-			increament=increament/3+1;
-			
-			for (int i=increament+1;i<length;i++){
-				if ((l.get(i)<l.get(i-increament)&&ascending)||(l.get(i)>l.get(i-increament)&&!ascending)){
-					l.set(0, l.get(i));
-//					for (j=i-increament;j>0&&(l.get(j)>l.get(0)&&ascending)||((l.get(j)<l.get(0))&&!ascending);j-=increament){
-					j=i-increament;
-					while(j>0&&((l.get(j)>l.get(0)&&ascending)||((l.get(j)<l.get(0))&&!ascending))){
-						l.set(j+increament, l.get(j));
-						j-=increament;
-					}
-						//					}
-					
-					l.set(j+increament, l.get(0));
-				}
-			}
-			
-		}while(increament>1);
-		
-		l.remove(0);
-		return l;	
-	}
+public class ShellSort <T extends Comparable<T>>{
 	
 	public static void main(String[] args) {
-		List<Integer>l=new ArrayList<Integer>();
-		int[] array={11,9,3,1,2,14,6,7,8,5,4,12,13};
-		for (int i:array){
-			l.add(i);
+		Integer[] tosort1={3,4,1,6,7,8,10,9,0,2};
+		
+		Integer[] tosort2={9,1,2,3,4,5,6,7,8,0};
+		
+		ShellSort<Integer> shellSort=new ShellSort<>();
+//		System.out.println(Arrays.toString(tosort1));
+		shellSort.sort(tosort1, true);
+		System.out.println(Arrays.toString(tosort1));
+//		System.out.println(Arrays.toString(tosort2));
+		shellSort.sort(tosort2, false);
+		System.out.println(Arrays.toString(tosort2));
+	}
+	
+	public T[] sort(T[] tosort,boolean isRise){
+		if (tosort.length==0||tosort.length==1){
+			return tosort;
 		}
-		System.out.println(l);
-		List<Integer> result=ShellSort.sort(l, false);
-		System.out.println(ShellSort.class.getName()+":"+result);
+		
+		int increament=tosort.length;
+		T flag;
+		do{	
+			increament=increament/3+1;
+			for (int i=increament;i<tosort.length;i++){
+				if (!(tosort[i-increament].compareTo(tosort[i])>0^isRise)){
+					flag=tosort[i];
+					int j;
+					for (j=i-increament;(j>=0)&&(!(flag.compareTo(tosort[j])<0^isRise));j-=increament){//j>-=0
+						tosort[j+increament]=tosort[j];
+					}
+					tosort[j+increament]=flag;
+				}
+			}
+		}while(increament>1);//用do..while  因为最后要increamet=1
+		
+		return tosort;
 	}
 }

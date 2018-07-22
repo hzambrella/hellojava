@@ -1,6 +1,6 @@
 package chengxuyuanxiaohui;
 
-//8皇后问题
+//8皇后问题  典型的回溯法（深度优先搜索）
 //皇后不能共行，问题简化，每行一个皇后。行为递归深度
 public class Queen8 {
 	private int max_queen = 8;
