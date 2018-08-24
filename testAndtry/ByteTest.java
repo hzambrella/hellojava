@@ -1,8 +1,5 @@
 package testAndtry;
 
-import testAndtry.InnerClass.MemberInner;
-import testAndtry.InnerClass.StaticInner;
-
 
 public class ByteTest {
 	// 不给final赋值，就在构造函数和非静态代码块赋值

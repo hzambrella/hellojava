@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class TestMap {
 	public static void main(String[] args){
-		Map<Integer,Object>m=new HashMap<Integer,Object>();
+		HashMap<Integer,Object>m=new HashMap<Integer,Object>();
 		String s="hello";
 		m.put(1, s);
 		s="world";
